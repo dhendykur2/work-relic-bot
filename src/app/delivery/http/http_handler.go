@@ -88,7 +88,7 @@ func getStatusCode(err error) int {
 	if err == nil {
 		return http.StatusOK
 	}
-	log.Fatal(err)
+	log.Println(err)
 	switch err {
 	case models.ErrInternalServerError:
 		return http.StatusInternalServerError

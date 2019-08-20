@@ -14,10 +14,6 @@ import (
 	"github.com/syndtr/goleveldb/leveldb"
 )
 
-var (
-	listenAddress string
-)
-
 func main() {
 	db, err := leveldb.OpenFile("path/to/db", nil)
 	if err != nil {
