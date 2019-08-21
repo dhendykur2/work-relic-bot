@@ -7,21 +7,23 @@ import (
 	"github.com/syndtr/goleveldb/leveldb"
 )
 
+// IRepository to register all repository function
 type IRepository interface {
-	Insert(val json.RawMessage, username string) error
-	GetUndone(username string) ([]models.Task, error)
+	Put(key string, val json.RawMessage) error
+	Get(key string) ([]models.Task, error)
 }
 
 type levelAppRepository struct {
 	Conn *leveldb.DB
 }
 
+// NewLevelDBRepository to register DB into repository
 func NewLevelDBRepository(Conn *leveldb.DB) IRepository {
 	return &levelAppRepository{Conn}
 }
 
-func (l *levelAppRepository) GetUndone(username string) ([]models.Task, error) {
-	data, err := l.Conn.Get([]byte(username+"_undone"), nil)
+func (l *levelAppRepository) Get(key string) ([]models.Task, error) {
+	data, err := l.Conn.Get([]byte(key), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -32,8 +34,8 @@ func (l *levelAppRepository) GetUndone(username string) ([]models.Task, error) {
 	return result, nil
 }
 
-func (l *levelAppRepository) Insert(val json.RawMessage, username string) error {
-	err := l.Conn.Put([]byte(username+"_undone"), val, nil)
+func (l *levelAppRepository) Put(key string, val json.RawMessage) error {
+	err := l.Conn.Put([]byte(key), val, nil)
 	if err != nil {
 		return err
 	}
