@@ -5,10 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"log"
 	"net/http"
-	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -36,27 +33,11 @@ const (
 )
 
 // NewUsecase is to Register the App Usecase
-func NewUsecase(a app.IRepository, timeout time.Duration) IUsecase {
-	credential, err := os.Open("./src/config/credentials.json")
-	if err != nil {
-		panic(fmt.Sprintf("Error Opening Credentials %s", err))
-	}
-	log.Println("Success to open credentials.json")
-	defer credential.Close()
-	byteVal, _ := ioutil.ReadAll(credential)
-	var res = new(models.Bot)
-	json.Unmarshal([]byte(byteVal), res)
-	log.Println(res.BaseAPI + res.Token)
-	if string(res.BaseAPI) != "https://api.telegram.org/" {
-		panic(fmt.Sprintf("wrong baseAPI"))
-	}
-	if strings.HasPrefix(res.Token, "bot") == false {
-		panic(fmt.Sprintf("token should start with bot"))
-	}
+func NewUsecase(a app.IRepository, timeout time.Duration, url string) IUsecase {
 	return &appUsecase{
 		appRepo:        a,
 		contextTimeout: timeout,
-		botURL:         res.BaseAPI + res.Token,
+		botURL:         url,
 	}
 }
 

@@ -1,4 +1,5 @@
-src/config/credentials.json
+credentials.json
 path
 Gopkg.lock
 vendor
+.DS_Store
