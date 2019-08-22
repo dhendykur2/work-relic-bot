@@ -18,8 +18,8 @@ $ dep ensure
  ***Create the new Bot? check https://core.telegram.org/bots***
 
 ```console
- $ cp credentials_example.json credentials.json
- $ nano credentials.json
+$ cp credentials_example.json credentials.json
+$ nano credentials.json
 ```
 
 if you have python in your local machine you can change your telegram webhook url by using changeWebhookTelegram.py script. Or you can just type in your browser with this format https://api.telegram.org/botBOT_TOKEN/setWebhook?url=WEBHOOK_URL
@@ -69,7 +69,19 @@ run the python script then fill the **webhook_url** with https://SAMPLE.ngrok.io
 ```console
 $ go run main.go
 ```
+Output
+```console
+2019/08/22 14:04:23 Success to open credentials.json
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
 
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /check                    --> work-relic-bot/src/app/delivery/http.(*HttpAppHandler).HealthCheck-fm (4 handlers)
+[GIN-debug] POST   /webhook                  --> work-relic-bot/src/app/delivery/http.(*HttpAppHandler).Webhook-fm (4 handlers)
+[GIN-debug] Listening and serving HTTP on :3000
+```
 # Test Case
 under development.
 
