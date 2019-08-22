@@ -1,6 +1,10 @@
 # Work Relic Bot
 [WorkRelicBot](https://t.me/WorkRelicBot) is Telegram bot to monitor your daily task.
 
+# Prerequisite
+1. Install [Go](https://golang.org/)
+2. Install [LevelDB](https://github.com/google/leveldb) for fast key-value storage library
+
 # Run in your local
 ```console
 $ git clone https://github.com/dhendykur2/work-relic-bot
