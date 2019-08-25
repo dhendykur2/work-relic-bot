@@ -48,6 +48,7 @@ func (a *appUsecase) Check(c context.Context) (string, error) {
 func (a *appUsecase) insert(text string, username string) string {
 	/*
 		-----FORMAT-----
+		TODO: insert=example,2019-04-03 15:00,example_desc
 		insert\n
 		task={}\n
 		due_date={}\n --YYYY-MM-DD
@@ -235,7 +236,7 @@ func (a *appUsecase) Webhook(c context.Context, m *models.Webhook) (string, erro
 	var replyText string
 	replyText = "wrong text command, checkout /help for documentation"
 	username := m.Message.From.Username
-	text := m.Message.Text
+	text := strings.ToLower(m.Message.Text)
 	if len(text) >= 5 && text[:5] == "/help" {
 		replyText = "*Work Relic Bot*\n" +
 			"1. to insert new Work type with this format:\n" +
