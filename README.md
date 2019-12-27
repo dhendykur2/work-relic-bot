@@ -1,4 +1,4 @@
-# Work Relic Bot
+# Work Relic Bot (Inactive Currently)
 [WorkRelicBot](https://t.me/WorkRelicBot) is Telegram bot to monitor your daily task.
 
 # Prerequisite
